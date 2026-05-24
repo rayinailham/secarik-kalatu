@@ -1,32 +1,114 @@
-# dependencies
+# ===== Dependencies =====
 node_modules
 .pnp
 .pnp.js
+.pnp.cjs
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+jspm_packages/
 
-# build
+# ===== Build output =====
 dist
 dist-ssr
+build
+out
+.output
+.vite
 *.local
 
-# logs
+# ===== Cache =====
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+.turbo
+.rollup.cache
+.vite-inspect
+
+# ===== Logs =====
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.pnpm-store
 
-# editor
+# ===== Environment =====
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===== Editor / IDE =====
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json.example
 .idea
-.DS_Store
+.fleet
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+*~
 
-# env
-.env
-.env.local
-.env.*.local
+# ===== OS =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ===== Testing / Coverage =====
+coverage
+*.lcov
+.nyc_output
+playwright-report
+test-results
+
+# ===== Temp / misc =====
+*.tmp
+*.temp
+*.bak
+*.orig
+.history
+.vercel
+.netlify
+
+# ===== Unused public images =====
+# Whole unused series folders
+public/04-19 - Porta Rona Series/
+public/04-25 - Pusta Update/
+public/05-02 - Porta Membiru Series/
+
+# 26-05 series — keep only 1-5.jpg (referenced in SeriesSpotlightSection.vue)
+public/26-05 - Porta Iris Series/*
+!public/26-05 - Porta Iris Series/1.jpg
+!public/26-05 - Porta Iris Series/2.jpg
+!public/26-05 - Porta Iris Series/3.jpg
+!public/26-05 - Porta Iris Series/4.jpg
+!public/26-05 - Porta Iris Series/5.jpg
+
+# Past Catalog — keep only 1-9.jpg (referenced in ArchiveSection.vue)
+public/Past Catalog/*
+!public/Past Catalog/1.jpg
+!public/Past Catalog/2.jpg
+!public/Past Catalog/3.jpg
+!public/Past Catalog/4.jpg
+!public/Past Catalog/5.jpg
+!public/Past Catalog/6.jpg
+!public/Past Catalog/7.jpg
+!public/Past Catalog/8.jpg
+!public/Past Catalog/9.jpg

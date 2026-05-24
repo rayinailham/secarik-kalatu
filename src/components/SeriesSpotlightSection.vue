@@ -8,13 +8,14 @@ gsap.registerPlugin(ScrollTrigger)
 const root = ref(null)
 let ctx = null
 
-// Featured drop — Porta Iris Series (26-05). Hand-picked from /public.
+// Featured drop — Porta Iris Series (26-05). Curated 1–5.
 const base = '/26-05 - Porta Iris Series'
 const shots = [
-  { src: `${base}/IMG_20260513_211259.jpg`, alt: 'Porta Iris — close-up tekstur kain' },
-  { src: `${base}/IMG_20260513_212146.jpg`, alt: 'Porta Iris — detail jahitan dan tali' },
-  { src: `${base}/IMG_20260513_212226.jpg`, alt: 'Porta Iris — pouch dengan buku di dalam' },
-  { src: `${base}/IMG_20260513_212301.jpg`, alt: 'Porta Iris — varian warna iris' },
+  { src: `${base}/1.jpg`, alt: 'Lorem ipsum dolor sit amet' },
+  { src: `${base}/2.jpg`, alt: 'Consectetur adipiscing elit' },
+  { src: `${base}/3.jpg`, alt: 'Sed do eiusmod tempor' },
+  { src: `${base}/4.jpg`, alt: 'Incididunt ut labore et dolore' },
+  { src: `${base}/5.jpg`, alt: 'Ut enim ad minim veniam' },
 ]
 
 onMounted(() => {
@@ -170,7 +171,7 @@ onBeforeUnmount(() => {
   max-width: none;
 }
 
-/* asymmetric editorial gallery: 4 images, mosaic layout */
+/* asymmetric editorial gallery: 5 images, mosaic layout */
 .spotlight__gallery {
   list-style: none;
   margin: 0;
@@ -183,9 +184,10 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 .spotlight__item--1 { grid-column: span 7; }
-.spotlight__item--2 { grid-column: span 5; align-self: end; padding-bottom: 48px; }
-.spotlight__item--3 { grid-column: span 5; padding-top: 48px; }
-.spotlight__item--4 { grid-column: span 7; }
+.spotlight__item--2 { grid-column: span 5; align-self: end; padding-bottom: 56px; }
+.spotlight__item--3 { grid-column: span 4; padding-top: 32px; }
+.spotlight__item--4 { grid-column: span 4; }
+.spotlight__item--5 { grid-column: span 4; padding-top: 56px; }
 
 .spotlight__media {
   margin: 0;
@@ -194,14 +196,11 @@ onBeforeUnmount(() => {
   overflow: hidden;
   border: 1px solid var(--line);
 }
-.spotlight__item--1 .spotlight__media,
-.spotlight__item--4 .spotlight__media {
-  aspect-ratio: 4 / 3;
-}
-.spotlight__item--2 .spotlight__media,
-.spotlight__item--3 .spotlight__media {
-  aspect-ratio: 3 / 4;
-}
+.spotlight__item--1 .spotlight__media { aspect-ratio: 4 / 3; }
+.spotlight__item--2 .spotlight__media { aspect-ratio: 3 / 4; }
+.spotlight__item--3 .spotlight__media { aspect-ratio: 1 / 1; }
+.spotlight__item--4 .spotlight__media { aspect-ratio: 3 / 4; }
+.spotlight__item--5 .spotlight__media { aspect-ratio: 4 / 3; }
 .spotlight__media img {
   width: 100%;
   height: 100%;

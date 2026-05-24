@@ -6,6 +6,7 @@ import StoryInterlude from './components/StoryInterlude.vue'
 import ProductsSection from './components/ProductsSection.vue'
 import ProcessStripSection from './components/ProcessStripSection.vue'
 import SeriesSpotlightSection from './components/SeriesSpotlightSection.vue'
+import ArchiveSection from './components/ArchiveSection.vue'
 import ClosingCTASection from './components/ClosingCTASection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import CustomScrollbar from './components/CustomScrollbar.vue'
@@ -21,6 +22,7 @@ useReveal()
     <ProductsSection />
     <ProcessStripSection />
     <SeriesSpotlightSection />
+    <ArchiveSection />
     <ClosingCTASection />
     <SiteFooter />
   </main>

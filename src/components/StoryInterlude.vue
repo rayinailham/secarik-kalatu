@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .interlude {
-  background: var(--bg-soft);
+  background: var(--bg);
   padding: calc(clamp(56px, 9vh, 88px) + 50px) 0 calc(clamp(36px, 5vh, 56px) + 50px);
   overflow: hidden;
 }

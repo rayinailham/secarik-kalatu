@@ -127,7 +127,7 @@ onBeforeUnmount(() => {
 .closing {
   padding-top: clamp(80px, 12vh, 144px);
   padding-bottom: clamp(80px, 12vh, 144px);
-  background: var(--bg);
+  background: var(--bg-soft);
   overflow-x: clip;
 }
 
