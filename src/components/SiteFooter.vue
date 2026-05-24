@@ -380,7 +380,6 @@ const groups = [
     min-height: 0;
   }
   .footer__feature {
-    order: -1;
     aspect-ratio: 5 / 4;
     width: 100%;
     max-height: 60vh;
