@@ -12,34 +12,56 @@ const products = [
   {
     id: 'pusta',
     name: 'Pusta Book Sleeves',
+    shortName: 'Pusta',
     image: '/pusta-book-sleeve.webp',
     story:
       'Sarung buku katun dengan slot di dalam dan di luar untuk pena, pembatas, atau apa pun yang ingin kamu simpan secara dekat. Untuk melindungi buku-buku dari serangan kotor dan lecek ketika harus melalui perjalanan panjang menemani hari-hari Kalapeeps semua.',
-    href: 'https://tk.tokopedia.com/ZSxaKownM/',
+    links: {
+      tokopedia: 'https://tk.tokopedia.com/ZSxmQVXBM/',
+      shopee:
+        'https://shopee.co.id/Pusta-Book-Sleeves-(Upcycled-Book-Cover-Pouch)-i.628026627.43111045159?extraParams=%7B%22display_model_id%22%3A415182502113%2C%22model_selection_logic%22%3A3%7D',
+      tiktok: 'https://vt.tokopedia.com/t/ZS9Yqumu5mEYY-ewMEe/',
+    },
   },
   {
     id: 'porta',
     name: 'Porta Book Pouch',
+    shortName: 'Porta',
     image: '/porta-book-pouch.webp',
     story:
       'Kantung buku dengan string & washer (tali dan kancing) sebagai pengencang. Terinspirasi amplop lawas—Manila & Airmail Envelope—yang dibuka tanpa lem agar isi tetap utuh, dan agar amplop tak hanya sekali pakai, melainkan bisa digunakan kembali.',
-    href: 'https://tk.tokopedia.com/ZSxaEYQCf/',
+    links: {
+      tokopedia: 'https://tk.tokopedia.com/ZSxmQ7QNR/',
+      shopee:
+        'https://shopee.co.id/Porta-Book-Pouch-Book-Sleeves-(Upcycled-Fabric)-i.628026627.56809791060?extraParams=%7B%22display_model_id%22%3A350928843592%2C%22model_selection_logic%22%3A3%7D',
+      tiktok: 'https://vt.tokopedia.com/t/ZS9YquPqR8nCE-YSsMZ/',
+    },
   },
   {
     id: 'embroidery',
     name: 'Embroidery Bookmark',
+    shortName: 'Embroidery',
     image: '/embroidery-bookmark.webp',
     story:
       'Pembatas buku dari kain sisa produksi yang ditambah aplikasi hand embroidery (sulam tangan) dan tassel. Dibuat sepenuh hati sebagai identitas keberpihakan kita semua pada gaya hidup berkelanjutan—memperpanjang usia kain, mengurangi limbah di sekitar.',
-    href: 'https://tk.tokopedia.com/ZSxaEJ6GK/',
+    links: {
+      tokopedia: 'https://tk.tokopedia.com/ZSxmCB8SW/',
+      shopee: '',
+      tiktok: 'https://vt.tokopedia.com/t/ZS9YquC3KvVHb-RLJZG/',
+    },
   },
   {
     id: 'bookmark',
     name: 'Bookmark Upcycled Fabric',
+    shortName: 'Bookmark',
     image: '/bookmark-upcycled-fabric.webp',
     story:
       'Pembatas buku dari kain sisa produksi yang ditambahkan tassel. Dibuat sepenuh hati sebagai identitas keberpihakan kita semua pada gaya hidup berkelanjutan—memperpanjang usia kain, mengurangi limbah di sekitar.',
-    href: 'https://tk.tokopedia.com/ZSxaEREUJ/',
+    links: {
+      tokopedia: 'https://tk.tokopedia.com/ZSxmCSRbx/',
+      shopee: '',
+      tiktok: 'https://vt.tokopedia.com/t/ZS9YquHuXWthD-EroIX/',
+    },
   },
 ]
 
@@ -141,22 +163,79 @@ onBeforeUnmount(() => {
               />
             </figure>
 
-            <a
-              class="card__link"
-              :href="p.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              :aria-label="`Lihat ${p.name} di Tokopedia`"
-            >
-              <div class="card__body">
-                <h3 class="card__name serif">{{ p.name }}</h3>
-                <p class="card__story mono">{{ p.story }}</p>
-                <p class="card__cta mono" aria-hidden="true">
-                  <span>Lihat di Tokopedia</span>
-                  <span class="card__cta-arrow">&#10230;</span>
-                </p>
-              </div>
-            </a>
+            <div class="card__body">
+              <h3 class="card__name serif">{{ p.name }}</h3>
+              <p class="card__story mono">{{ p.story }}</p>
+              <ul class="card__shops" role="list">
+                <li>
+                  <a
+                    class="card__shop card__shop--tokopedia"
+                    :href="p.links.tokopedia || '#'"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :aria-label="`Lihat ${p.shortName} di Tokopedia`"
+                  >
+                    <img
+                      src="/svg/tokopedia-svgrepo-com.svg"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                    />
+                    <span class="card__shop-label">Lihat {{ p.shortName }} di Tokopedia</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="card__shop card__shop--shopee"
+                    v-if="p.links.shopee"
+                    :href="p.links.shopee"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :aria-label="`Lihat ${p.shortName} di Shopee`"
+                  >
+                    <img
+                      src="/svg/shopee-svgrepo-com.svg"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                    />
+                    <span class="card__shop-label">Lihat {{ p.shortName }} di Shopee</span>
+                  </a>
+                  <span
+                    v-else
+                    class="card__shop card__shop--shopee card__shop--disabled"
+                    role="link"
+                    aria-disabled="true"
+                    :aria-label="`${p.shortName} belum tersedia di Shopee`"
+                  >
+                    <img
+                      src="/svg/shopee-svgrepo-com.svg"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                    />
+                    <span class="card__shop-label">Belum tersedia di Shopee</span>
+                  </span>
+                </li>
+                <li>
+                  <a
+                    class="card__shop card__shop--tiktok"
+                    :href="p.links.tiktok || '#'"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :aria-label="`Lihat ${p.shortName} di TikTok`"
+                  >
+                    <img
+                      src="/svg/tiktok-svgrepo-outlined-com.svg"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                    />
+                    <span class="card__shop-label">Lihat {{ p.shortName }} di TikTok</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -244,18 +323,7 @@ onBeforeUnmount(() => {
   opacity: 0;
 }
 
-.card__link {
-  display: grid;
-  gap: 22px;
-  color: inherit;
-  text-decoration: none;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.card__link:focus-visible {
-  outline: 1px solid var(--ink);
-  outline-offset: 6px;
-}
+
 
 .card__media {
   margin: 0;
@@ -302,28 +370,94 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-.card__cta {
+.card__shops {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
+}
+.card__shop {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--ink);
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.7;
+  transition:
+    opacity 280ms var(--ease),
+    transform 280ms var(--ease);
+}
+.card__shop img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  object-fit: contain;
+}
+.card__shop--tiktok img {
+  transform: translateY(1px);
+}
+.card__shop:hover,
+.card__shop:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.card__shop:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+.card__shop--disabled {
+  cursor: not-allowed;
+  opacity: 0.28;
+  filter: grayscale(1);
+  position: relative;
+}
+.card__shop--disabled::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  background: currentColor;
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+.card__shop--disabled:hover,
+.card__shop--disabled:focus-visible {
+  opacity: 0.42;
+  transform: none;
+}
+.card__shop-label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-muted);
-  margin: 12px 0 0;
+  color: var(--bg-soft);
+  background: var(--ink);
+  padding: 6px 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 240ms var(--ease),
+    transform 240ms var(--ease);
 }
-.card__cta-arrow {
-  display: inline-block;
-  font-size: 15px;
-  line-height: 1;
-  transform: translate(-5px, -0.5px);
-  transition: transform 500ms var(--ease);
-}
-.card__link:hover .card__cta-arrow,
-.card__link:focus-visible .card__cta-arrow {
-  transform: translate(-2px, -0.5px);
+.card__shop:hover .card__shop-label,
+.card__shop:focus-visible .card__shop-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 /* editorial cadence on desktop — use position offset so right column

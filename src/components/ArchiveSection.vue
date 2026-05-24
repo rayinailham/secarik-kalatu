@@ -112,12 +112,12 @@ onBeforeUnmount(() => {
               :fetchpriority="i === 0 ? 'high' : 'low'"
               decoding="async"
             />
+            <figcaption class="archive__caption mono">
+              <span class="archive__date">{{ s.date }}</span>
+              <span class="archive__dot" aria-hidden="true">·</span>
+              <span class="archive__alt">{{ s.alt }}</span>
+            </figcaption>
           </figure>
-          <figcaption class="archive__caption mono">
-            <span class="archive__date">{{ s.date }}</span>
-            <span class="archive__dot" aria-hidden="true">·</span>
-            <span class="archive__alt">{{ s.alt }}</span>
-          </figcaption>
         </li>
       </ul>
 
