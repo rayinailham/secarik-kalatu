@@ -1,0 +1,159 @@
+/* ========================================================================
+   Secarik Kalatu — global styles
+   Premium utilitarian minimalism, warm monochrome, editorial-craft.
+   ======================================================================== */
+
+/* Editorial italic serif: EB Garamond (Google Fonts) — closest readily
+   available match to Essays1743 in flavor (oldstyle, contrasted, refined). */
+
+/* ---------- design tokens ---------- */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #fbfaf7;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #8a8784;
+  --line: #e8e6e1;
+  --accent: #6b5d4f;
+
+  --serif: 'EB Garamond', 'Iowan Old Style', 'Cormorant Garamond', Georgia, serif;
+  --mono: 'DM Mono', 'Courier Prime', 'Courier New', Courier, monospace;
+
+  --max: 1320px;
+  --gutter: clamp(20px, 4vw, 56px);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+}
+
+/* ---------- hide native scrollbar (custom floating one is rendered) ---------- */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---------- lenis ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---------- type primitives ---------- */
+.serif {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.mono {
+  font-family: var(--mono);
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+/* ---------- shared layout ---------- */
+.shell {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: 0;
+}
+
+/* ---------- utility motion ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 900ms var(--ease),
+    transform 900ms var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- selection ---------- */
+::selection {
+  background: #1a1a1a;
+  color: #ffffff;
+}
