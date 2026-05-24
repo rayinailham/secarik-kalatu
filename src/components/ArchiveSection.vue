@@ -12,15 +12,15 @@ let ctx = null
 // detail texture, in-context, full pouch, bookmark close-ups.
 const base = '/Past Catalog'
 const shots = [
-  { src: `${base}/6.webp`, alt: 'Lorem ipsum dolor sit amet', date: '08 · 31 · 25', span: 5 },
-  { src: `${base}/2.webp`, alt: 'Consectetur adipiscing elit', date: '02 · 06 · 26', span: 4 },
-  { src: `${base}/3.webp`, alt: 'Sed do eiusmod tempor', date: '02 · 06 · 26', span: 3 },
-  { src: `${base}/4.webp`, alt: 'Incididunt ut labore', date: '02 · 06 · 26', span: 4 },
-  { src: `${base}/5.webp`, alt: 'Ut enim ad minim veniam', date: '02 · 06 · 26', span: 5 },
-  { src: `${base}/1.webp`, alt: 'Quis nostrud exercitation', date: '02 · 06 · 26', span: 3 },
-  { src: `${base}/7.webp`, alt: 'Duis aute irure dolor', date: '02 · 06 · 26', span: 3 },
-  { src: `${base}/8.webp`, alt: 'Excepteur sint occaecat', date: '02 · 06 · 26', span: 5 },
-  { src: `${base}/9.webp`, alt: 'Cupidatat non proident', date: '02 · 06 · 26', span: 4 },
+  { src: `${base}/6.webp`, alt: 'Book sleeve upcycled fabric Secarik Kalatu, motif sulam tangan di atas meja kayu', date: '08 · 31 · 25', span: 5 },
+  { src: `${base}/2.webp`, alt: 'Bookmark kain sisa dengan tassel, di-styling di antara halaman buku terbuka', date: '02 · 06 · 26', span: 4 },
+  { src: `${base}/3.webp`, alt: 'Detail jahitan tangan pada Pusta Book Sleeves edisi lawas', date: '02 · 06 · 26', span: 3 },
+  { src: `${base}/4.webp`, alt: 'Porta Book Pouch tweed dengan kancing kayu dan tali katun', date: '02 · 06 · 26', span: 4 },
+  { src: `${base}/5.webp`, alt: 'Embroidery bookmark sulam motif bunga di atas buku terbuka', date: '02 · 06 · 26', span: 5 },
+  { src: `${base}/1.webp`, alt: 'Book sleeve tie-dye biru shibori, edisi terbatas Pusta', date: '02 · 06 · 26', span: 3 },
+  { src: `${base}/7.webp`, alt: 'Tumpukan book sleeves dan bookmark dari kain sisa, slow-made di Bandung', date: '02 · 06 · 26', span: 3 },
+  { src: `${base}/8.webp`, alt: 'Detail tekstur kain upcycled untuk book accessories Secarik Kalatu', date: '02 · 06 · 26', span: 5 },
+  { src: `${base}/9.webp`, alt: 'Bookmark kain motif daun, dipegang tangan dengan latar buku', date: '02 · 06 · 26', span: 4 },
 ]
 
 onMounted(() => {

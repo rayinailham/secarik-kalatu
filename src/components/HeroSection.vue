@@ -19,7 +19,7 @@ onMounted(() => {
     const img = self.selector('.hero__media img')
     const sig = self.selector('.hero__signature')
     const lede = self.selector('.hero__lede')
-    const cta = self.selector('.hero__cta')
+    const cta = self.selector('.hero__shops')
     const meta = self.selector('.hero__meta')
 
     // Initial state — kept in JS so SSR/static paint never flashes the final pose.
@@ -89,7 +89,10 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="hero__top">
-      <p class="hero__signature serif">secarik<span class="hero__signature-dot">.</span>kalatu</p>
+      <h1 class="hero__signature serif">
+        <span class="visually-hidden">Secarik Kalatu — book sleeves &amp; bookmark upcycled fabric, slow-made di Bandung. </span>
+        <span aria-hidden="true">secarik<span class="hero__signature-dot">.</span>kalatu</span>
+      </h1>
       <div class="hero__meta mono" aria-hidden="true">
         <span>BANDUNG · IDN</span>
         <span class="hero__dot">·</span>
@@ -101,15 +104,59 @@ onBeforeUnmount(() => {
       <p class="hero__lede mono">
         re-purpose leftover fabrics into something more.
       </p>
-      <a
-        class="hero__cta mono"
-        href="https://www.tokopedia.com/kalatustudio"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>Lihat di Tokopedia</span>
-        <span class="hero__cta-arrow" aria-hidden="true">&#10230;</span>
-      </a>
+      <ul class="hero__shops" role="list">
+        <li>
+          <a
+            class="hero__shop hero__shop--tokopedia"
+            href="https://www.tokopedia.com/kalatustudio"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Kunjungi Kalatu Studio di Tokopedia"
+          >
+            <img
+              src="/svg/tokopedia-svgrepo-com.svg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            />
+            <span class="hero__shop-label">Tokopedia</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="hero__shop hero__shop--shopee"
+            href="https://shopee.co.id/secarik.kalatu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Kunjungi Secarik Kalatu di Shopee"
+          >
+            <img
+              src="/svg/shopee-svgrepo-com.svg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            />
+            <span class="hero__shop-label">Shopee</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="hero__shop hero__shop--tiktok"
+            href="https://www.tiktok.com/@secarik.kalatu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Kunjungi Secarik Kalatu di TikTok"
+          >
+            <img
+              src="/svg/tiktok-svgrepo-outlined-com.svg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            />
+            <span class="hero__shop-label">TikTok</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
@@ -207,6 +254,76 @@ onBeforeUnmount(() => {
   will-change: transform, opacity;
 }
 
+.hero__shops {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  will-change: transform, opacity;
+}
+.hero__shop {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #f6f3ec;
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.78;
+  transition:
+    opacity 280ms var(--ease),
+    transform 280ms var(--ease);
+}
+.hero__shop img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.hero__shop--tiktok img {
+  transform: translateY(1px);
+}
+.hero__shop:hover,
+.hero__shop:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.hero__shop:focus-visible {
+  outline: 1px solid rgba(246, 243, 236, 0.7);
+  outline-offset: 6px;
+}
+.hero__shop-label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0c0c0c;
+  background: #f6f3ec;
+  padding: 6px 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 240ms var(--ease),
+    transform 240ms var(--ease);
+}
+.hero__shop:hover .hero__shop-label,
+.hero__shop:focus-visible .hero__shop-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .hero__cta {
   display: inline-flex;
   align-items: center;
@@ -250,6 +367,18 @@ onBeforeUnmount(() => {
 }
 .hero__dot {
   opacity: 0.5;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 640px) {

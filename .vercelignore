@@ -24,6 +24,11 @@ dist
 # Docs / dev-only
 about-kalatu.md
 
+# ===== Unused hero source files (only hero-2.webp is referenced) =====
+public/hero.jpg
+public/hero.png
+public/hero-2.jpg
+
 # ===== Unused public images =====
 public/04-19 - Porta Rona Series
 public/04-25 - Pusta Update

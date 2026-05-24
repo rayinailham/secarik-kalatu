@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://secarik-kalatu.vercel.app/</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://secarik-kalatu.vercel.app/hero-2.webp</image:loc>
+      <image:title>Secarik Kalatu — book sleeve dan bookmark dari kain sisa</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://secarik-kalatu.vercel.app/pusta-book-sleeve.webp</image:loc>
+      <image:title>Pusta Book Sleeves — Secarik Kalatu</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://secarik-kalatu.vercel.app/porta-book-pouch.webp</image:loc>
+      <image:title>Porta Book Pouch — Secarik Kalatu</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://secarik-kalatu.vercel.app/embroidery-bookmark.webp</image:loc>
+      <image:title>Embroidery Bookmark — Secarik Kalatu</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://secarik-kalatu.vercel.app/bookmark-upcycled-fabric.webp</image:loc>
+      <image:title>Bookmark Upcycled Fabric — Secarik Kalatu</image:title>
+    </image:image>
+  </url>
+</urlset>

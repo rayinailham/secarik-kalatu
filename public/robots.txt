@@ -1,0 +1,9 @@
+# robots.txt — Secarik Kalatu
+User-agent: *
+Allow: /
+Disallow: /Past Catalog/
+Disallow: /04-19 - Porta Rona Series/
+Disallow: /04-25 - Pusta Update/
+Disallow: /05-02 - Porta Membiru Series/
+
+Sitemap: https://secarik-kalatu.vercel.app/sitemap.xml

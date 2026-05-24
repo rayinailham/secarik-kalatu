@@ -157,7 +157,9 @@ onBeforeUnmount(() => {
             <figure class="card__media">
               <img
                 :src="p.image"
-                :alt="p.name"
+                :alt="`${p.name} — ${p.shortName} dari Secarik Kalatu, book accessories upcycled fabric`"
+                width="800"
+                height="1000"
                 loading="lazy"
                 decoding="async"
               />

@@ -147,15 +147,59 @@ onBeforeUnmount(() => {
       </div>
 
       <footer class="spotlight__foot">
-        <a
-          class="spotlight__cta mono"
-          href="https://tk.tokopedia.com/ZSxaEYQCf/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>Lihat Porta di Tokopedia</span>
-          <span class="spotlight__cta-arrow" aria-hidden="true">&#10230;</span>
-        </a>
+        <ul class="spotlight__shops" role="list">
+          <li>
+            <a
+              class="spotlight__shop spotlight__shop--tokopedia"
+              href="https://tk.tokopedia.com/ZSxmQ7QNR/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lihat Porta di Tokopedia"
+            >
+              <img
+                src="/svg/tokopedia-svgrepo-com.svg"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+              <span class="spotlight__shop-label">Lihat Porta di Tokopedia</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="spotlight__shop spotlight__shop--shopee"
+              href="https://shopee.co.id/Porta-Book-Pouch-Book-Sleeves-(Upcycled-Fabric)-i.628026627.56809791060?extraParams=%7B%22display_model_id%22%3A350928843592%2C%22model_selection_logic%22%3A3%7D"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lihat Porta di Shopee"
+            >
+              <img
+                src="/svg/shopee-svgrepo-com.svg"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+              <span class="spotlight__shop-label">Lihat Porta di Shopee</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="spotlight__shop spotlight__shop--tiktok"
+              href="https://vt.tokopedia.com/t/ZS9YquPqR8nCE-YSsMZ/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lihat Porta di TikTok"
+            >
+              <img
+                src="/svg/tiktok-svgrepo-outlined-com.svg"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+              <span class="spotlight__shop-label">Lihat Porta di TikTok</span>
+            </a>
+          </li>
+        </ul>
       </footer>
     </div>
   </section>
@@ -258,28 +302,72 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: flex-start;
 }
-.spotlight__cta {
+.spotlight__shops {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
+}
+.spotlight__shop {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--ink);
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.7;
+  transition:
+    opacity 280ms var(--ease),
+    transform 280ms var(--ease);
+}
+.spotlight__shop img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  object-fit: contain;
+}
+.spotlight__shop--tiktok img {
+  transform: translateY(1px);
+}
+.spotlight__shop:hover,
+.spotlight__shop:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.spotlight__shop:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+.spotlight__shop-label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--ink);
+  color: var(--bg-soft);
+  background: var(--ink);
+  padding: 6px 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 240ms var(--ease),
+    transform 240ms var(--ease);
 }
-.spotlight__cta-arrow {
-  display: inline-block;
-  font-size: 15px;
-  line-height: 1;
-  transition: transform 500ms var(--ease);
-}
-.spotlight__cta:hover .spotlight__cta-arrow {
-  transform: translateX(4px);
+.spotlight__shop:hover .spotlight__shop-label,
+.spotlight__shop:focus-visible .spotlight__shop-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 /* mobile slider — hidden on desktop, shown on small screens */
