@@ -1,0 +1,107 @@
+# Dependencies (Vercel installs fresh)
+node_modules
+
+# Build output (Vercel builds fresh)
+dist
+.vite
+
+# Git / IDE
+.git
+.vscode
+.idea
+
+# Logs / cache
+*.log
+.cache
+.parcel-cache
+.turbo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Docs / dev-only
+about-kalatu.md
+
+# ===== Unused public images =====
+public/04-19 - Porta Rona Series
+public/04-25 - Pusta Update
+public/05-02 - Porta Membiru Series
+
+# 26-05 series — keep only 1-5.jpg
+public/26-05 - Porta Iris Series/6.jpg
+public/26-05 - Porta Iris Series/7.jpg
+public/26-05 - Porta Iris Series/8.jpg
+public/26-05 - Porta Iris Series/9.jpg
+public/26-05 - Porta Iris Series/10.jpg
+public/26-05 - Porta Iris Series/11.jpg
+public/26-05 - Porta Iris Series/12.jpg
+public/26-05 - Porta Iris Series/13.jpg
+public/26-05 - Porta Iris Series/14.jpg
+public/26-05 - Porta Iris Series/15.jpg
+public/26-05 - Porta Iris Series/16.jpg
+public/26-05 - Porta Iris Series/17.jpg
+public/26-05 - Porta Iris Series/18.jpg
+public/26-05 - Porta Iris Series/19.jpg
+
+# Past Catalog — keep only 1-9.jpg
+public/Past Catalog/10.jpg
+public/Past Catalog/11.jpg
+public/Past Catalog/12.jpg
+public/Past Catalog/13.jpg
+public/Past Catalog/14.jpg
+public/Past Catalog/15.jpg
+public/Past Catalog/16.jpg
+public/Past Catalog/17.jpg
+public/Past Catalog/18.jpg
+public/Past Catalog/19.jpg
+public/Past Catalog/20.jpg
+public/Past Catalog/21.jpg
+public/Past Catalog/22.jpg
+public/Past Catalog/23.jpg
+public/Past Catalog/24.jpg
+public/Past Catalog/25.jpg
+public/Past Catalog/26.jpg
+public/Past Catalog/27.jpg
+public/Past Catalog/28.jpg
+public/Past Catalog/29.jpg
+public/Past Catalog/30.jpg
+public/Past Catalog/31.jpg
+public/Past Catalog/32.jpg
+public/Past Catalog/33.jpg
+public/Past Catalog/34.jpg
+public/Past Catalog/35.jpg
+public/Past Catalog/36.jpg
+public/Past Catalog/37.jpg
+public/Past Catalog/38.jpg
+public/Past Catalog/39.jpg
+public/Past Catalog/40.jpg
+public/Past Catalog/41.jpg
+public/Past Catalog/42.jpg
+public/Past Catalog/43.jpg
+public/Past Catalog/44.jpg
+public/Past Catalog/45.jpg
+public/Past Catalog/46.jpg
+public/Past Catalog/47.jpg
+public/Past Catalog/48.jpg
+public/Past Catalog/49.jpg
+public/Past Catalog/50.jpg
+public/Past Catalog/51.jpg
+public/Past Catalog/52.jpg
+public/Past Catalog/53.jpg
+public/Past Catalog/54.jpg
+public/Past Catalog/55.jpg
+public/Past Catalog/56.jpg
+public/Past Catalog/57.jpg
+public/Past Catalog/58.jpg
+public/Past Catalog/59.jpg
+public/Past Catalog/60.jpg
+public/Past Catalog/61.jpg
+public/Past Catalog/62.jpg
+public/Past Catalog/63.jpg
+public/Past Catalog/64.jpg
+public/Past Catalog/65.jpg
+public/Past Catalog/66.jpg
+public/Past Catalog/67.jpg
+public/Past Catalog/68.jpg
