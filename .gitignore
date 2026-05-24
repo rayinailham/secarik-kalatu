@@ -93,15 +93,20 @@ public/04-19 - Porta Rona Series/
 public/04-25 - Pusta Update/
 public/05-02 - Porta Membiru Series/
 
-# 26-05 series — keep only 1-5.jpg (referenced in SeriesSpotlightSection.vue)
+# 26-05 series — keep only 1-5 (referenced in SeriesSpotlightSection.vue)
 public/26-05 - Porta Iris Series/*
 !public/26-05 - Porta Iris Series/1.jpg
 !public/26-05 - Porta Iris Series/2.jpg
 !public/26-05 - Porta Iris Series/3.jpg
 !public/26-05 - Porta Iris Series/4.jpg
 !public/26-05 - Porta Iris Series/5.jpg
+!public/26-05 - Porta Iris Series/1.webp
+!public/26-05 - Porta Iris Series/2.webp
+!public/26-05 - Porta Iris Series/3.webp
+!public/26-05 - Porta Iris Series/4.webp
+!public/26-05 - Porta Iris Series/5.webp
 
-# Past Catalog — keep only 1-9.jpg (referenced in ArchiveSection.vue)
+# Past Catalog — keep only 1-9 (referenced in ArchiveSection.vue)
 public/Past Catalog/*
 !public/Past Catalog/1.jpg
 !public/Past Catalog/2.jpg
@@ -112,3 +117,12 @@ public/Past Catalog/*
 !public/Past Catalog/7.jpg
 !public/Past Catalog/8.jpg
 !public/Past Catalog/9.jpg
+!public/Past Catalog/1.webp
+!public/Past Catalog/2.webp
+!public/Past Catalog/3.webp
+!public/Past Catalog/4.webp
+!public/Past Catalog/5.webp
+!public/Past Catalog/6.webp
+!public/Past Catalog/7.webp
+!public/Past Catalog/8.webp
+!public/Past Catalog/9.webp
