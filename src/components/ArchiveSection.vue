@@ -179,7 +179,7 @@ onBeforeUnmount(() => {
   line-height: 1.7;
   color: var(--ink-soft);
   margin: 0;
-  max-width: 62ch;
+  max-width: 92ch;
 }
 
 /* asymmetric editorial mosaic — 12-col grid with varied spans */

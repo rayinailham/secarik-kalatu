@@ -132,8 +132,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
-  object-position: center;
+  object-position: center 75%;
   filter: brightness(0.78) contrast(1.05) saturate(0.85);
   transform-origin: center;
   will-change: transform, opacity;

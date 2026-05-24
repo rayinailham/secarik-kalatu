@@ -11,11 +11,11 @@ let ctx = null
 // Featured drop — Porta Iris Series (26-05). Curated 1–5.
 const base = '/26-05 - Porta Iris Series'
 const shots = [
-  { src: `${base}/1.webp`, alt: 'Lorem ipsum dolor sit amet' },
-  { src: `${base}/2.webp`, alt: 'Consectetur adipiscing elit' },
-  { src: `${base}/3.webp`, alt: 'Sed do eiusmod tempor' },
-  { src: `${base}/4.webp`, alt: 'Incididunt ut labore et dolore' },
-  { src: `${base}/5.webp`, alt: 'Ut enim ad minim veniam' },
+  { src: `${base}/1.webp`, alt: 'Tumpukan lima Porta — batik mega mendung lavender, ikat indigo, kotak hitam-putih, dan sulur cetak hijau & coklat, masih dengan tali kancing kelapa terurai' },
+  { src: `${base}/2.webp`, alt: 'Dua Porta berdampingan — sage trellis dan batik mega mendung lavender, ditutup kancing kelapa dan manik kayu, label Kalatu kecil di pojok' },
+  { src: `${base}/3.webp`, alt: 'Dua Porta motif ikat tenun indigo — sapuan putih meliuk di atas dasar navy gelap, ditutup kancing kelapa' },
+  { src: `${base}/4.webp`, alt: 'Dua Porta dasar putih — sulur cetak hijau zaitun dan sulur coklat tua, kancing kelapa dan tali katun' },
+  { src: `${base}/5.webp`, alt: 'Porta motif kotak-kotak monokrom — anyaman grafis hitam-putih dengan dua kancing kelapa dan tali katun' },
 ]
 
 onMounted(() => {
@@ -81,10 +81,6 @@ onBeforeUnmount(() => {
           </h2>
           <p class="spotlight__date mono" data-anim>26 &middot; 05</p>
         </div>
-        <p class="spotlight__sub mono" data-anim>
-          Drop kain bertema iris &mdash; perpaduan ungu kebiruan, lavender, dan
-          violet pucat. Edisi terbatas, tiap pouch hanya dibuat sekali.
-        </p>
       </header>
 
       <ul class="spotlight__gallery" role="list">
