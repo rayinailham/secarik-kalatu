@@ -175,7 +175,7 @@ const groups = [
 
 <style scoped>
 .footer {
-  background: var(--bg-soft);
+  background: #f1e9d9;
   color: var(--ink);
 }
 
