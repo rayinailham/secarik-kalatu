@@ -35,7 +35,7 @@ const steps = [
   <section ref="root" class="process" aria-label="Proses pembuatan">
     <div class="shell process__shell">
       <header class="process__head">
-        <p class="eyebrow" data-anim>02 &mdash; Proses</p>
+        <p class="eyebrow" data-anim>02 — Proses</p>
         <h2 class="process__title serif" data-anim>
           Dari sisa, ke jahitan, ke bukumu.
         </h2>
@@ -160,11 +160,30 @@ const steps = [
 
 @media (max-width: 880px) {
   .process__strip {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px clamp(16px, 4vw, 28px);
+  }
+  .step:nth-child(3) {
+    grid-column: 1 / -1;
   }
   .step__media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
+  }
+  .step:nth-child(3) .step__media {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 480px) {
+  .process__strip {
+    gap: 24px 12px;
+  }
+  .step__title {
+    font-size: 17px;
+  }
+  .step__copy {
+    font-size: 11px;
+    line-height: 1.65;
   }
 }
 </style>

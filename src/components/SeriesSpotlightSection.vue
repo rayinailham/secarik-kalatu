@@ -18,6 +18,12 @@ const shots = [
   { src: `${base}/5.webp`, alt: 'Porta motif kotak-kotak monokrom — anyaman grafis hitam-putih dengan dua kancing kelapa dan tali katun' },
 ]
 
+// Mobile: active main image + tappable thumbnail strip.
+const activeIndex = ref(0)
+const setActive = (i) => {
+  activeIndex.value = i
+}
+
 onMounted(() => {
   if (!root.value) return
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -74,12 +80,12 @@ onBeforeUnmount(() => {
   <section ref="root" class="spotlight" aria-label="Drop terbaru Porta Iris">
     <div class="shell spotlight__shell">
       <header class="spotlight__head">
-        <p class="eyebrow" data-anim>03 &mdash; Drop terbaru</p>
+        <p class="eyebrow" data-anim>03 — Drop terbaru</p>
         <div class="spotlight__title-wrap">
           <h2 class="spotlight__title serif" data-anim>
             Porta Iris Series
           </h2>
-          <p class="spotlight__date mono" data-anim>26 &middot; 05</p>
+          <p class="spotlight__date mono" data-anim>26 · 05</p>
         </div>
       </header>
 
@@ -101,6 +107,44 @@ onBeforeUnmount(() => {
           </figure>
         </li>
       </ul>
+
+      <div class="spotlight__mobile" aria-hidden="false">
+        <figure class="spotlight__main">
+          <img
+            v-for="(s, i) in shots"
+            :key="`main-${s.src}`"
+            :src="s.src"
+            :alt="s.alt"
+            :class="['spotlight__main-img', { 'is-active': activeIndex === i }]"
+            :loading="i === 0 ? 'eager' : 'lazy'"
+            :fetchpriority="i === 0 ? 'high' : 'low'"
+            decoding="async"
+          />
+        </figure>
+        <ul class="spotlight__thumbs" role="list">
+          <li
+            v-for="(s, i) in shots"
+            :key="`thumb-${s.src}`"
+            class="spotlight__thumb-item"
+          >
+            <button
+              type="button"
+              class="spotlight__thumb"
+              :class="{ 'is-active': activeIndex === i }"
+              :aria-label="`Lihat foto ${i + 1}`"
+              :aria-pressed="activeIndex === i"
+              @click="setActive(i)"
+            >
+              <img
+                :src="s.src"
+                :alt="s.alt"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+          </li>
+        </ul>
+      </div>
 
       <footer class="spotlight__foot">
         <a
@@ -238,23 +282,79 @@ onBeforeUnmount(() => {
   transform: translateX(4px);
 }
 
+/* mobile slider — hidden on desktop, shown on small screens */
+.spotlight__mobile {
+  display: none;
+}
+
 @media (max-width: 880px) {
   .spotlight__gallery {
-    grid-template-columns: 1fr 1fr;
+    display: none;
+  }
+  .spotlight__mobile {
+    display: grid;
     gap: 14px;
   }
-  .spotlight__item--1,
-  .spotlight__item--2,
-  .spotlight__item--3,
-  .spotlight__item--4 {
-    grid-column: span 1;
-    padding: 0;
+  .spotlight__main {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--bg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    position: relative;
   }
-  .spotlight__item--1 .spotlight__media,
-  .spotlight__item--2 .spotlight__media,
-  .spotlight__item--3 .spotlight__media,
-  .spotlight__item--4 .spotlight__media {
-    aspect-ratio: 3 / 4;
+  .spotlight__main-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 600ms var(--ease);
+  }
+  .spotlight__main-img.is-active {
+    opacity: 1;
+  }
+  .spotlight__thumbs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .spotlight__thumb-item {
+    min-width: 0;
+  }
+  .spotlight__thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.55;
+    transition:
+      opacity 300ms var(--ease),
+      border-color 300ms var(--ease);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .spotlight__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .spotlight__thumb.is-active {
+    opacity: 1;
+    border-color: var(--ink);
+  }
+  .spotlight__thumb:focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 2px;
   }
 }
 </style>

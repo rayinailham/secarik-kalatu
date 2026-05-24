@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
   <section ref="root" class="archive" aria-label="Arsip edisi yang sudah berpulang">
     <div class="shell archive__shell">
       <header class="archive__head">
-        <p class="eyebrow" data-anim>04 &mdash; Arsip</p>
+          <p class="eyebrow" data-anim>04 — Arsip</p>
         <div class="archive__title-wrap">
           <h2 class="archive__title serif" data-anim>
             Edisi yang sudah pulang.
@@ -91,7 +91,7 @@ onBeforeUnmount(() => {
           <p class="archive__count mono" data-anim>{{ shots.length }} dari 59 keping</p>
         </div>
         <p class="archive__sub mono" data-anim>
-          Tiap drop dijahit sekali. Begitu habis, ia tinggal jadi catatan &mdash; foto
+          Tiap drop dijahit sekali. Begitu habis, ia tinggal jadi catatan — foto
           yang menemani kami mengingat motif, warna, dan tangan yang menyentuhnya.
         </p>
       </header>
@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
           </figure>
           <figcaption class="archive__caption mono">
             <span class="archive__date">{{ s.date }}</span>
-            <span class="archive__dot" aria-hidden="true">&middot;</span>
+            <span class="archive__dot" aria-hidden="true">·</span>
             <span class="archive__alt">{{ s.alt }}</span>
           </figcaption>
         </li>
@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
 
       <footer class="archive__foot">
         <p class="archive__note mono">
-          Lihat behind-the-scene drop selanjutnya di TikTok &amp; Instagram &mdash;
+          Lihat behind-the-scene drop selanjutnya di TikTok &amp; Instagram —
           @secarik.kalatu.
         </p>
       </footer>
@@ -287,14 +287,19 @@ onBeforeUnmount(() => {
   .archive__item--span-3,
   .archive__item--span-4,
   .archive__item--span-5 {
-    grid-column: span 12;
+    grid-column: span 4;
   }
+  .archive__grid {
+    gap: 10px;
+  }
+  .archive__item:nth-child(n) { padding-top: 0; }
   .archive__item:nth-child(even) { padding-top: 0; }
   .archive__item--span-3 .archive__media,
   .archive__item--span-4 .archive__media,
   .archive__item--span-5 .archive__media {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
   }
+  .archive__caption { display: none; }
   .archive__alt { display: none; }
 }
 </style>

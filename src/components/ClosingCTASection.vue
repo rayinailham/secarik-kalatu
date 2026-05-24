@@ -91,7 +91,7 @@ onBeforeUnmount(() => {
   <section ref="root" class="closing" aria-label="Pilih secarik untukmu">
     <div class="shell closing__shell">
       <header class="closing__head">
-        <p class="eyebrow" data-anim>04 &mdash; Penutup</p>
+        <p class="eyebrow" data-anim>04 — Penutup</p>
         <h2 class="closing__title serif" data-anim>
           Pilih secarik untukmu.
         </h2>

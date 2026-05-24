@@ -1,76 +1,173 @@
 <script setup>
+import { ref } from 'vue'
+
 const year = new Date().getFullYear()
+const email = ref('')
+
+const onSubscribe = (e) => {
+  e.preventDefault()
+  if (!email.value) return
+  // no backend yet; open mailto so the intent still completes.
+  const to = 'halo@kalatustudio.com'
+  const subject = encodeURIComponent('Ikut perjalanan Secarik Kalatu')
+  const body = encodeURIComponent(
+    `Halo, saya ${email.value} mau ikut cerita Secarik Kalatu.`
+  )
+  window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
+}
+
+const groups = [
+  {
+    heading: 'Belanja',
+    items: [
+      { label: 'Tokopedia', href: 'https://www.tokopedia.com/kalatustudio' },
+      { label: 'Shopee', href: 'https://shopee.co.id/secarik.kalatu' },
+    ],
+  },
+  {
+    heading: 'Cerita',
+    items: [
+      { label: 'TikTok', href: 'https://www.tiktok.com/@secarik.kalatu' },
+      { label: 'Instagram', href: 'https://www.instagram.com/secarik.kalatu/' },
+    ],
+  },
+  {
+    heading: 'Studio',
+    items: [
+      { label: 'Kalatu Studio' },
+      { label: 'Bandung, Indonesia' },
+      { label: 'Slow-made & upcycled' },
+    ],
+  },
+]
 </script>
 
 <template>
   <footer class="footer" aria-label="Site footer">
-    <div class="shell footer__shell">
-      <hr class="rule" />
+    <hr class="rule" />
 
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <p class="footer__sig serif">secarik kalatu</p>
-          <p class="footer__line mono">
-            Book sleeves &amp; bookmark dari sisa kain. Slow-made di Bandung.
+    <div class="footer__layout">
+      <div class="footer__inner">
+        <div class="shell footer__shell">
+          <div class="footer__grid">
+            <!-- Left: subscribe + socials -->
+            <div class="footer__lead">
+              <p class="eyebrow">Ikuti perjalanan kami</p>
+              <p class="footer__lede mono">
+                Berlangganan untuk cerita di balik tiap helai kain &mdash;
+                rilisan terbatas, catatan studio, dan diskon pertama untuk
+                pesanan kamu.
+              </p>
+
+              <form class="subscribe" @submit="onSubscribe" novalidate>
+                <label class="visually-hidden" for="footer-email">Alamat email</label>
+                <input
+                  id="footer-email"
+                  v-model="email"
+                  class="subscribe__input mono"
+                  type="email"
+                  inputmode="email"
+                  autocomplete="email"
+                  placeholder="Alamat email"
+                  required
+                />
+                <button
+                  class="subscribe__btn"
+                  type="submit"
+                  aria-label="Kirim alamat email"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path
+                      d="M4 12h15M13 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </form>
+
+              <ul class="socials" role="list">
+                <li>
+                  <a
+                    class="socials__a"
+                    href="https://www.instagram.com/secarik.kalatu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+                      <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="socials__a"
+                    href="https://www.tiktok.com/@secarik.kalatu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                      <path
+                        d="M14 3v9.6a3.4 3.4 0 1 1-3.4-3.4"
+                        fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14 3c.5 2.4 2.4 4.2 4.8 4.5"
+                        fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Middle: link columns -->
+            <nav class="footer__nav" aria-label="Tautan footer">
+              <div
+                v-for="g in groups"
+                :key="g.heading"
+                class="footer__col"
+              >
+                <p class="eyebrow">{{ g.heading }}</p>
+                <ul class="footer__list">
+                  <li v-for="(it, i) in g.items" :key="i">
+                    <a
+                      v-if="it.href"
+                      class="link mono"
+                      :href="it.href"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >{{ it.label }}</a>
+                    <span v-else class="mono">{{ it.label }}</span>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+
+          <p class="footer__copy mono">
+            &copy; {{ year }} Secarik Kalatu &mdash; sub-brand Kalatu Studio. All rights reserved.
           </p>
-        </div>
-
-        <div class="footer__col">
-          <p class="eyebrow">Belanja</p>
-          <ul class="footer__list">
-            <li>
-              <a
-                href="https://www.tokopedia.com/kalatustudio"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="link mono"
-              >Tokopedia</a>
-            </li>
-            <li>
-              <a
-                href="https://shopee.co.id/secarik.kalatu"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="link mono"
-              >Shopee</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer__col">
-          <p class="eyebrow">Cerita</p>
-          <ul class="footer__list">
-            <li>
-              <a
-                href="https://www.tiktok.com/@secarik.kalatu"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="link mono"
-              >TikTok</a>
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/secarik.kalatu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="link mono"
-              >Instagram</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer__col">
-          <p class="eyebrow">Studio</p>
-          <ul class="footer__list">
-            <li><span class="mono">Kalatu Studio</span></li>
-            <li><span class="mono">Bandung, Indonesia</span></li>
-          </ul>
         </div>
       </div>
 
-      <div class="footer__base">
-        <p class="mono">© {{ year }} Secarik Kalatu — sub-brand Kalatu Studio.</p>
-        <p class="mono">re-purpose leftover fabrics into something more.</p>
+      <!-- Right: full-bleed editorial image -->
+      <div class="footer__feature" aria-hidden="true">
+        <img
+          src="/footer-feature.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="1500"
+        />
       </div>
     </div>
   </footer>
@@ -78,61 +175,139 @@ const year = new Date().getFullYear()
 
 <style scoped>
 .footer {
-  padding-top: clamp(48px, 8vh, 96px);
-  padding-bottom: clamp(28px, 4vh, 48px);
   background: var(--bg-soft);
   color: var(--ink);
 }
 
+.footer__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.5fr);
+  align-items: stretch;
+  min-height: clamp(420px, 60vh, 640px);
+}
+
+/* ---------- left content side ---------- */
+.footer__inner {
+  display: flex;
+  align-items: stretch;
+  padding-top: clamp(56px, 9vh, 112px);
+  padding-bottom: clamp(28px, 4vh, 48px);
+}
 .footer__shell {
-  max-width: 1560px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
 }
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: clamp(28px, 4vw, 64px);
-  padding-top: clamp(40px, 6vh, 72px);
-  padding-bottom: clamp(40px, 6vh, 72px);
+  grid-template-columns: minmax(280px, 1.05fr) minmax(0, 1.4fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: start;
+  flex: 1;
 }
 
-.footer__brand {
+/* ---------- subscribe block ---------- */
+.footer__lead {
   display: grid;
-  gap: 12px;
-  max-width: 32ch;
+  gap: 18px;
+  max-width: 42ch;
 }
-.footer__sig {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1;
-  margin: 0;
-  color: var(--ink);
-}
-.footer__line {
-  font-family: var(--mono);
-  font-size: 11.5px;
-  line-height: 1.7;
+.footer__lede {
+  font-size: 12px;
+  line-height: 1.75;
   color: var(--ink-soft);
   margin: 0;
 }
 
+.subscribe {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 6px;
+  margin-top: 4px;
+}
+.subscribe__input {
+  flex: 1;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 8px 0;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.subscribe__input::placeholder {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.subscribe__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--ink);
+  transition: transform 360ms var(--ease), color 220ms var(--ease);
+}
+.subscribe__btn:hover { transform: translateX(4px); }
+
+/* ---------- socials ---------- */
+.socials {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 14px;
+}
+.socials__a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: transparent;
+  transition:
+    background 280ms var(--ease),
+    color 280ms var(--ease),
+    border-color 280ms var(--ease);
+}
+.socials__a:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* ---------- nav columns ---------- */
+.footer__nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 56px);
+}
 .footer__col {
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 .footer__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 6px;
+  gap: 10px;
 }
 .footer__list .mono,
 .link {
-  font-size: 11.5px;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  letter-spacing: 0.03em;
   color: var(--ink);
 }
 .link {
@@ -151,36 +326,97 @@ const year = new Date().getFullYear()
   background: var(--ink);
   transition: right 360ms var(--ease);
 }
-.link:hover {
-  color: var(--ink);
-}
-.link:hover::after {
-  right: 0;
-}
+.link:hover::after { right: 0; }
 
-.footer__base {
-  border-top: 1px solid var(--line);
-  padding-top: 22px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
+/* ---------- copy ---------- */
+.footer__copy {
+  margin: clamp(56px, 8vh, 96px) 0 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
   color: var(--ink-muted);
 }
-.footer__base p {
-  margin: 0;
+
+/* ---------- right feature image ---------- */
+.footer__feature {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.footer__feature img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.02);
 }
 
-@media (max-width: 880px) {
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .footer__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.4fr);
+    min-height: clamp(380px, 56vh, 560px);
+  }
   .footer__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: clamp(36px, 5vh, 56px);
+  }
+  .footer__nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-@media (max-width: 520px) {
-  .footer__grid {
+
+@media (max-width: 820px) {
+  .footer__layout {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .footer__feature {
+    order: -1;
+    aspect-ratio: 16 / 10;
+  }
+  .footer__inner {
+    padding-top: clamp(40px, 7vh, 72px);
+  }
+  .footer__shell {
+    max-width: none;
+  }
+  .footer__lead { max-width: 56ch; }
+}
+
+@media (max-width: 560px) {
+  .footer__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 24px;
+  }
+  .footer__feature { aspect-ratio: 4 / 3; }
+  .footer__copy { font-size: 10.5px; }
+}
+
+@media (max-width: 380px) {
+  .footer__nav {
     grid-template-columns: 1fr;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .subscribe__btn,
+  .socials__a,
+  .link::after,
+  .footer__feature img {
+    transition: none;
+  }
+  .subscribe__btn:hover { transform: none; }
+}
 </style>
+
+
+
