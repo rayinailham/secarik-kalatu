@@ -15,6 +15,7 @@ onMounted(() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   ctx = gsap.context((self) => {
+    const imgEl = self.selector('.hero__media img')[0]
     const img = self.selector('.hero__media img')
     const sig = self.selector('.hero__signature')
     const lede = self.selector('.hero__lede')
@@ -33,31 +34,34 @@ onMounted(() => {
       return
     }
 
-    const start = () => {
-      const tl = gsap.timeline({
-        defaults: { ease: 'expo.out' },
-      })
-
-      tl.to(img, { autoAlpha: 1, duration: 1.6, ease: 'power2.out' }, 0)
-        .to(img, { scale: 1.0, duration: 14, ease: 'none' }, 0)
-        .to(
-          sig,
-          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2 },
-          0.25,
-        )
-        .to(lede, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.75)
-        .to(cta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.95)
-        .to(meta, { autoAlpha: 1, y: 0, duration: 0.9 }, 1.0)
+    // Image fades in independently as soon as it's decoded — never gated on fonts.
+    const revealImage = () => {
+      gsap.to(img, { autoAlpha: 1, duration: 1.0, ease: 'power2.out' })
+      gsap.to(img, { scale: 1.0, duration: 14, ease: 'none' })
     }
 
-    // Wait for web fonts so glyph metrics settle before animating in.
+    if (imgEl?.complete && imgEl.naturalWidth > 0) {
+      revealImage()
+    } else if (imgEl) {
+      imgEl.addEventListener('load', revealImage, { once: true })
+      imgEl.addEventListener('error', revealImage, { once: true })
+    }
+
+    // Text animates in on its own track once fonts are ready.
+    const startText = () => {
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
+      tl.to(sig, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2 }, 0)
+        .to(lede, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.5)
+        .to(cta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.7)
+        .to(meta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.75)
+    }
+
     if (document.fonts && document.fonts.ready) {
-      onReady = () => start()
-      document.fonts.ready.then(onReady).catch(start)
-      // Hard fallback so we never get stuck.
-      setTimeout(start, 1800)
+      onReady = () => startText()
+      document.fonts.ready.then(onReady).catch(startText)
+      setTimeout(startText, 1500)
     } else {
-      start()
+      startText()
     }
   }, root.value)
 })
