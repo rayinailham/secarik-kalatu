@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
   >
     <div class="hero__media">
       <img
-        src="/hero.png"
+        src="/hero-2.jpg"
         alt="Secarik Kalatu — leftover fabrics turned into book sleeves and bookmarks"
         loading="eager"
         decoding="async"
@@ -132,6 +132,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center bottom;
   object-position: center;
   filter: brightness(0.78) contrast(1.05) saturate(0.85);
   transform-origin: center;
