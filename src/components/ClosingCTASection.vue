@@ -12,7 +12,7 @@ const links = [
   {
     id: 'tokopedia',
     label: 'Belanja di Tokopedia',
-    note: 'Toko utama Kalatu Studio',
+    note: '@kalatustudio',
     href: 'https://www.tokopedia.com/kalatustudio',
   },
   {

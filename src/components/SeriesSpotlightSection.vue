@@ -11,11 +11,11 @@ let ctx = null
 // Featured drop — Porta Iris Series (26-05). Curated 1–5.
 const base = '/26-05 - Porta Iris Series'
 const shots = [
-  { src: `${base}/1.jpg`, alt: 'Lorem ipsum dolor sit amet' },
-  { src: `${base}/2.jpg`, alt: 'Consectetur adipiscing elit' },
-  { src: `${base}/3.jpg`, alt: 'Sed do eiusmod tempor' },
-  { src: `${base}/4.jpg`, alt: 'Incididunt ut labore et dolore' },
-  { src: `${base}/5.jpg`, alt: 'Ut enim ad minim veniam' },
+  { src: `${base}/1.webp`, alt: 'Lorem ipsum dolor sit amet' },
+  { src: `${base}/2.webp`, alt: 'Consectetur adipiscing elit' },
+  { src: `${base}/3.webp`, alt: 'Sed do eiusmod tempor' },
+  { src: `${base}/4.webp`, alt: 'Incididunt ut labore et dolore' },
+  { src: `${base}/5.webp`, alt: 'Ut enim ad minim veniam' },
 ]
 
 onMounted(() => {
@@ -98,7 +98,8 @@ onBeforeUnmount(() => {
             <img
               :src="s.src"
               :alt="s.alt"
-              loading="lazy"
+              :loading="i === 0 ? 'eager' : 'lazy'"
+              :fetchpriority="i === 0 ? 'high' : 'low'"
               decoding="async"
             />
           </figure>
@@ -182,6 +183,8 @@ onBeforeUnmount(() => {
 }
 .spotlight__item {
   margin: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
 }
 .spotlight__item--1 { grid-column: span 7; }
 .spotlight__item--2 { grid-column: span 5; align-self: end; padding-bottom: 56px; }

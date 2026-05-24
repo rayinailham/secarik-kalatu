@@ -12,15 +12,15 @@ let ctx = null
 // detail texture, in-context, full pouch, bookmark close-ups.
 const base = '/Past Catalog'
 const shots = [
-  { src: `${base}/6.jpg`, alt: 'Lorem ipsum dolor sit amet', date: '08 · 31 · 25', span: 5 },
-  { src: `${base}/2.jpg`, alt: 'Consectetur adipiscing elit', date: '02 · 06 · 26', span: 4 },
-  { src: `${base}/3.jpg`, alt: 'Sed do eiusmod tempor', date: '02 · 06 · 26', span: 3 },
-  { src: `${base}/4.jpg`, alt: 'Incididunt ut labore', date: '02 · 06 · 26', span: 4 },
-  { src: `${base}/5.jpg`, alt: 'Ut enim ad minim veniam', date: '02 · 06 · 26', span: 5 },
-  { src: `${base}/1.jpg`, alt: 'Quis nostrud exercitation', date: '02 · 06 · 26', span: 3 },
-  { src: `${base}/7.jpg`, alt: 'Duis aute irure dolor', date: '02 · 06 · 26', span: 3 },
-  { src: `${base}/8.jpg`, alt: 'Excepteur sint occaecat', date: '02 · 06 · 26', span: 5 },
-  { src: `${base}/9.jpg`, alt: 'Cupidatat non proident', date: '02 · 06 · 26', span: 4 },
+  { src: `${base}/6.webp`, alt: 'Lorem ipsum dolor sit amet', date: '08 · 31 · 25', span: 5 },
+  { src: `${base}/2.webp`, alt: 'Consectetur adipiscing elit', date: '02 · 06 · 26', span: 4 },
+  { src: `${base}/3.webp`, alt: 'Sed do eiusmod tempor', date: '02 · 06 · 26', span: 3 },
+  { src: `${base}/4.webp`, alt: 'Incididunt ut labore', date: '02 · 06 · 26', span: 4 },
+  { src: `${base}/5.webp`, alt: 'Ut enim ad minim veniam', date: '02 · 06 · 26', span: 5 },
+  { src: `${base}/1.webp`, alt: 'Quis nostrud exercitation', date: '02 · 06 · 26', span: 3 },
+  { src: `${base}/7.webp`, alt: 'Duis aute irure dolor', date: '02 · 06 · 26', span: 3 },
+  { src: `${base}/8.webp`, alt: 'Excepteur sint occaecat', date: '02 · 06 · 26', span: 5 },
+  { src: `${base}/9.webp`, alt: 'Cupidatat non proident', date: '02 · 06 · 26', span: 4 },
 ]
 
 onMounted(() => {
@@ -54,20 +54,22 @@ onMounted(() => {
       })
     }
 
-    items.forEach((el, i) => {
-      gsap.to(el, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1.4,
-        ease: 'power2.out',
-        delay: (i % 3) * 0.08,
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 92%',
-          toggleActions: 'play none none none',
+    if (items.length) {
+      ScrollTrigger.batch(items, {
+        start: 'top 92%',
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+            stagger: 0.08,
+            overwrite: 'auto',
+          })
         },
       })
-    })
+    }
   }, root.value)
 })
 
@@ -106,7 +108,8 @@ onBeforeUnmount(() => {
             <img
               :src="s.src"
               :alt="s.alt"
-              loading="lazy"
+              :loading="i === 0 ? 'eager' : 'lazy'"
+              :fetchpriority="i === 0 ? 'high' : 'low'"
               decoding="async"
             />
           </figure>
@@ -193,6 +196,8 @@ onBeforeUnmount(() => {
   display: grid;
   gap: 10px;
   align-self: start;
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
 }
 .archive__item--span-3 { grid-column: span 3; }
 .archive__item--span-4 { grid-column: span 4; }
@@ -220,12 +225,10 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.4s var(--ease), filter 1.2s var(--ease);
-  filter: saturate(0.94);
+  transition: transform 1.4s var(--ease);
 }
 .archive__item:hover .archive__media img {
   transform: scale(1.025);
-  filter: saturate(1);
 }
 
 .archive__caption {
