@@ -2,7 +2,7 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { gsap } from 'gsap'
 
-// Hero — full-bleed hero.jpg with signature wordmark + lede centered.
+// Hero — full-bleed hero-2.webp with signature wordmark + lede centered.
 // Animated in via a single GSAP timeline once web fonts have settled.
 
 const root = ref(null)
@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
   >
     <div class="hero__media">
       <img
-        src="/hero-2.jpg"
+        src="/hero-2.webp"
         alt="Secarik Kalatu — leftover fabrics turned into book sleeves and bookmarks"
         loading="eager"
         decoding="async"

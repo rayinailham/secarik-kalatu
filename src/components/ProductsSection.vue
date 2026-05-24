@@ -12,7 +12,7 @@ const products = [
   {
     id: 'pusta',
     name: 'Pusta Book Sleeves',
-    image: '/pusta-book-sleeve.jpeg',
+    image: '/pusta-book-sleeve.webp',
     story:
       'Sarung buku katun dengan slot di dalam dan di luar untuk pena, pembatas, atau apa pun yang ingin kamu simpan secara dekat. Untuk melindungi buku-buku dari serangan kotor dan lecek ketika harus melalui perjalanan panjang menemani hari-hari Kalapeeps semua.',
     href: 'https://tk.tokopedia.com/ZSxaKownM/',
@@ -20,7 +20,7 @@ const products = [
   {
     id: 'porta',
     name: 'Porta Book Pouch',
-    image: '/porta-book-pouch.jpeg',
+    image: '/porta-book-pouch.webp',
     story:
       'Kantung buku dengan string & washer (tali dan kancing) sebagai pengencang. Terinspirasi amplop lawas—Manila & Airmail Envelope—yang dibuka tanpa lem agar isi tetap utuh, dan agar amplop tak hanya sekali pakai, melainkan bisa digunakan kembali.',
     href: 'https://tk.tokopedia.com/ZSxaEYQCf/',
@@ -28,7 +28,7 @@ const products = [
   {
     id: 'embroidery',
     name: 'Embroidery Bookmark',
-    image: '/embroidery-bookmark.jpeg',
+    image: '/embroidery-bookmark.webp',
     story:
       'Pembatas buku dari kain sisa produksi yang ditambah aplikasi hand embroidery (sulam tangan) dan tassel. Dibuat sepenuh hati sebagai identitas keberpihakan kita semua pada gaya hidup berkelanjutan—memperpanjang usia kain, mengurangi limbah di sekitar.',
     href: 'https://tk.tokopedia.com/ZSxaEJ6GK/',
@@ -36,7 +36,7 @@ const products = [
   {
     id: 'bookmark',
     name: 'Bookmark Upcycled Fabric',
-    image: '/bookmark-upcycled-fabric.jpeg',
+    image: '/bookmark-upcycled-fabric.webp',
     story:
       'Pembatas buku dari kain sisa produksi yang ditambahkan tassel. Dibuat sepenuh hati sebagai identitas keberpihakan kita semua pada gaya hidup berkelanjutan—memperpanjang usia kain, mengurangi limbah di sekitar.',
     href: 'https://tk.tokopedia.com/ZSxaEREUJ/',
