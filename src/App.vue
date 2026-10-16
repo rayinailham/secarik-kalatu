@@ -1,6 +1,7 @@
 <script setup>
 import { useLenis } from './composables/useLenis'
 import { useReveal } from './composables/useReveal'
+import IntroSection from './components/IntroSection.vue'
 import HeroSection from './components/HeroSection.vue'
 import StoryInterlude from './components/StoryInterlude.vue'
 import ProductsSection from './components/ProductsSection.vue'
@@ -16,6 +17,7 @@ useReveal()
 </script>
 
 <template>
+  <IntroSection />
   <main class="page">
     <HeroSection />
     <StoryInterlude />

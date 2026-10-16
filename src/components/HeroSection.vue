@@ -34,39 +34,37 @@ onMounted(() => {
       return
     }
 
-    // Image fades in independently as soon as it's decoded — never gated on fonts.
-    const revealImage = () => {
-      gsap.to(img, { autoAlpha: 1, duration: 1.0, ease: 'power2.out' })
-      gsap.to(img, { scale: 1.0, duration: 14, ease: 'none' })
+    // Starts when the intro's image begins to bleed full-screen (IntroSection).
+    const run = () => {
+      gsap.set(img, { autoAlpha: 1, scale: 1 })
+
+      // Text animates in on its own track once fonts are ready.
+      const startText = () => {
+        const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
+        tl.to(sig, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2 }, 0)
+          .to(lede, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.5)
+          .to(cta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.7)
+          .to(meta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.75)
+      }
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(startText).catch(startText)
+        setTimeout(startText, 1500)
+      } else {
+        startText()
+      }
     }
 
-    if (imgEl?.complete && imgEl.naturalWidth > 0) {
-      revealImage()
-    } else if (imgEl) {
-      imgEl.addEventListener('load', revealImage, { once: true })
-      imgEl.addEventListener('error', revealImage, { once: true })
-    }
-
-    // Text animates in on its own track once fonts are ready.
-    const startText = () => {
-      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
-      tl.to(sig, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2 }, 0)
-        .to(lede, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.5)
-        .to(cta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.7)
-        .to(meta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.75)
-    }
-
-    if (document.fonts && document.fonts.ready) {
-      onReady = () => startText()
-      document.fonts.ready.then(onReady).catch(startText)
-      setTimeout(startText, 1500)
-    } else {
-      startText()
+    if (window.__introBleed) run()
+    else {
+      onReady = run
+      window.addEventListener('intro-bleed', onReady, { once: true })
     }
   }, root.value)
 })
 
 onBeforeUnmount(() => {
+  if (onReady) window.removeEventListener('intro-bleed', onReady)
   ctx?.revert()
   ctx = null
 })
