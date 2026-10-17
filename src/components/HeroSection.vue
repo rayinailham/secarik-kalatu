@@ -23,11 +23,14 @@ onMounted(() => {
     const meta = self.selector('.hero__meta')
 
     // Initial state — kept in JS so SSR/static paint never flashes the final pose.
-    gsap.set(img, { autoAlpha: 0, scale: 1.12 })
-    gsap.set(sig, { autoAlpha: 0, y: 22, filter: 'blur(8px)' })
-    gsap.set(lede, { autoAlpha: 0, y: 14 })
-    gsap.set(cta, { autoAlpha: 0, y: 10 })
-    gsap.set(meta, { autoAlpha: 0, y: -6 })
+    // 0.01, not 0: visibility:hidden / opacity:0 layers are skipped by the rasteriser, so the
+    // hero image and text were first decoded+rastered mid-intro (a ~50 ms stall at the hand-off).
+    // At 0.01 they are rastered up front while the intro still covers them.
+    gsap.set(img, { autoAlpha: 0.01 })
+    gsap.set(sig, { autoAlpha: 0.01, y: 22 })
+    gsap.set(lede, { autoAlpha: 0.01, y: 14 })
+    gsap.set(cta, { autoAlpha: 0.01, y: 10 })
+    gsap.set(meta, { autoAlpha: 0.01, y: -6 })
 
     if (reduced) {
       gsap.set([img, sig, lede, cta, meta], { autoAlpha: 1, y: 0, scale: 1, filter: 'none' })
@@ -36,12 +39,14 @@ onMounted(() => {
 
     // Starts when the intro's image begins to bleed full-screen (IntroSection).
     const run = () => {
-      gsap.set(img, { autoAlpha: 1, scale: 1 })
+      gsap.set(img, { autoAlpha: 1 })
 
       // Text animates in on its own track once fonts are ready.
       const startText = () => {
         const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
-        tl.to(sig, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.2 }, 0)
+        // no filter:blur() here — tweening it re-rendered the whole wordmark through a filter
+        // render pass every frame, 20-45 ms of GPU time per frame at 1440p during the bleed.
+        tl.to(sig, { autoAlpha: 1, y: 0, duration: 1.2 }, 0)
           .to(lede, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.5)
           .to(cta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.7)
           .to(meta, { autoAlpha: 1, y: 0, duration: 0.9 }, 0.75)
@@ -78,7 +83,7 @@ onBeforeUnmount(() => {
   >
     <div class="hero__media">
       <img
-        src="/hero-2.webp"
+        src="/hero-2-2560.webp"
         alt="Secarik Kalatu — leftover fabrics turned into book sleeves and bookmarks"
         loading="eager"
         decoding="async"

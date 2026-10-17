@@ -126,3 +126,5 @@ public/Past Catalog/*
 !public/Past Catalog/7.webp
 !public/Past Catalog/8.webp
 !public/Past Catalog/9.webp
+# 320px intro-card thumbs (IntroSection.vue)
+!public/Past Catalog/thumb/

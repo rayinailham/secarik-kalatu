@@ -8,9 +8,9 @@ import { gsap } from 'gsap'
 // Hand-off: "intro-bleed" (hero copy starts) then "intro-done"; HeroSection listens to bleed.
 
 const KEY = 'introPlayed'
-const base = '/Past Catalog'
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${base}/${n}.webp`)
-const HERO = '/hero-2.webp' // last = top of the stack = the image that grows
+// shortcut: 320px thumbs (cards are <=120 CSS px wide); full-size files made every card a 3.4MP decode + 13.6MB texture.
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `/Past Catalog/thumb/${n}.webp`)
+const HERO = '/hero-2-2560.webp' // last = top of the stack = the image that grows; same URL as HeroSection so they share one decode
 
 // shortcut: skip on repeat visit in same tab (like noart) and on reduced-motion.
 let skip = false
@@ -70,7 +70,9 @@ onMounted(async () => {
   const RADIUS = (mobile ? 0.75 : 1) * 240
   const CENTER_W = 120 // collapsed stack width (gionatan: centerScale 120)
   const N = items.length
-  const st = items.map(() => ({ o: 0, s: 0.01, c: 0 }))
+  // o starts at 0.01, not 0: opacity-0 layers are never rastered, so each card (esp. the hero)
+  // used to be decoded and uploaded the first frame it faded in — a 50-80 ms stall mid-intro.
+  const st = items.map(() => ({ o: 0.01, s: 0.01, c: 0 }))
   const ring = { angle: 0, ramp: 0 }
 
   const place = (i) => {
@@ -92,6 +94,21 @@ onMounted(async () => {
     if (!stacked) for (let i = 0; i < N; i++) place(i)
   }
   gsap.ticker.add(tick)
+
+  // pre-roll: let the (near-invisible) cards and the hero underneath decode/upload/raster behind
+  // the plain background, and only start the show once frames are steady again.
+  await new Promise((resolve) => {
+    const t0 = performance.now()
+    let last = t0
+    let calm = 0
+    const step = (t) => {
+      calm = t - last < 24 ? calm + 1 : 0
+      last = t
+      if (t - t0 > 900 || (t - t0 > 200 && calm >= 4)) resolve()
+      else requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  })
 
   // percent counter + bar, power2.inOut like noart
   const pct = { v: 0 }
